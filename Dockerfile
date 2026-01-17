@@ -123,15 +123,15 @@ RUN apt-get update -y \
     && ./bin/installdependencies.sh \
     && rm -rf /var/lib/apt/lists/*
 
-COPY start.sh .
-RUN chmod +x start.sh \
-    && dos2unix start.sh
+COPY run.sh .
+RUN chmod +x run.sh \
+    && dos2unix run.sh
 
 USER runner
 
 VOLUME ["/opt/hostedtoolcache"]
 
-ENTRYPOINT ["/home/runner/start.sh"]
+ENTRYPOINT ["/home/runner/run.sh"]
 
 FROM runner-base as docker-runner-base
 
