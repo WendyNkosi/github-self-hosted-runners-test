@@ -27,12 +27,8 @@ get_token() {
 }
 
 # Generate unique runner name per container
-CONTAINER_ID=$(curl -sSL "${ECS_CONTAINER_METADATA_URI_V4}/task" \
-  | jq -r --arg NAME "${CONTAINER_NAME}" '.Containers[] | select(.Name==$NAME) | .DockerId')
-CONTAINER_ID=${CONTAINER_ID:0:12}
-if [ -z "$CONTAINER_ID" ]; then
-    CONTAINER_ID="$(date +%s)-$RANDOM"
-fi
+CONTAINER_ID="$(date +%s)-$RANDOM"
+
 
 RUNNER_NAME="gha-${RUNNER_GROUP}-$(uname -m)-${CONTAINER_ID}"
 
