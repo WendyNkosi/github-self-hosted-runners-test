@@ -14,5 +14,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      # Build and push self-hosted runner image  
+    - name: Build and push the self hosted runner image to dockerhub
+      uses: docker/build-push-action@v5
+      with:
+       context: .
+       file: ./Dockerfile
+       push: true
+       tags: wendynkosi/todo-api:runner
