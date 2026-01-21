@@ -83,9 +83,6 @@ ARG DOTNET_DIR=/opt/hostedtoolcache/dotnet
 RUN mkdir -p ${DOTNET_DIR} && \
     curl -fsSL https://dot.net/v1/dotnet-install.sh -o /tmp/dotnet-install.sh && \
     chmod +x /tmp/dotnet-install.sh && \
-    /tmp/dotnet-install.sh --version 6.0.428 --install-dir ${DOTNET_DIR} && \
-    /tmp/dotnet-install.sh --version 7.0.410 --install-dir ${DOTNET_DIR} && \
-    /tmp/dotnet-install.sh --version 8.0.204 --install-dir ${DOTNET_DIR} && \
     /tmp/dotnet-install.sh --version 10.0.100 --install-dir ${DOTNET_DIR} && \
     rm /tmp/dotnet-install.sh
     
@@ -99,7 +96,6 @@ RUN dotnet tool install -g dotnet-reportgenerator-globaltool
 ARG RUNNER_VERSION=2.330.0
 ARG DEBIAN_FRONTEND=noninteractive
 ARG DEBCONF_NONINTERACTIVE_SEEN=true
-ENV GITHUB_ORG=WendyNkosi
 ENV DESTINATION=runner-cache-server:/var/cache
 ENV CONTAINER_NAME=gha_runner
 ENV RUNNER_LABELS="linux,x64,ecs"
