@@ -1,0 +1,21 @@
+services:
+  gha_runner:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: gha_runner:1
+
+    environment:
+      - GITHUB_REPOSITORY
+      - GITHUB_ORG
+      - RUNNER_GROUP=docker-hosted-runners
+      - GITHUB_PERSONAL_TOKEN
+    deploy:
+      replicas: 5
+      restart_policy:
+       condition: always
+    
+      
+      
+    
+      
